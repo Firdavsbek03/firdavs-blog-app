@@ -72,7 +72,7 @@ class BlogPost(db.Model):
 
 
 db.create_all()
-
+#
 
 def admin_only(f):
     @wraps(f)
