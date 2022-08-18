@@ -12,10 +12,7 @@ from functools import wraps
 import os
 
 app = Flask(__name__)
-if os.environ.get('SECRET_KEY') is not None:
-    app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
-else:
-    app.config['SECRET_KEY'] = '8BYkEfBA6O6donzWlSihBXox7C0sKR6b'
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
 ckeditor = CKEditor(app)
 Bootstrap(app)
 
@@ -23,10 +20,7 @@ login_manager=LoginManager()
 login_manager.init_app(app)
 
 # CONNECT TO DB
-if os.environ.get('DATABASE_URL') is not None:
-    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
-else:
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///blog.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL",  "sqlite:///blog.db")
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
