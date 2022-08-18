@@ -20,9 +20,7 @@ login_manager=LoginManager()
 login_manager.init_app(app)
 
 # CONNECT TO DB
-database_post=os.environ.get('DATABASE_URL').split(":")
-database_postgres=database_post[0]+"ql:"+database_post[1]
-app.config['SQLALCHEMY_DATABASE_URI'] = database_postgres
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL1')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
